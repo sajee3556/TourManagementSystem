@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 15, 2014 11:52:24 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="db.entity.Route" table="route" catalog="tourmanagement">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="30" />
+        </property>
+        <property name="days" type="java.lang.Integer">
+            <column name="days" />
+        </property>
+        <property name="distance" type="java.lang.Integer">
+            <column name="distance" />
+        </property>
+        <set name="driverRoutes" table="driver_route" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="route_id" not-null="true" />
+            </key>
+            <one-to-many class="db.entity.DriverRoute" />
+        </set>
+        <set name="tours" table="tour" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="route_id" />
+            </key>
+            <one-to-many class="db.entity.Tour" />
+        </set>
+        <set name="routeTowns" table="route_town" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="route_id" />
+            </key>
+            <one-to-many class="db.entity.RouteTown" />
+        </set>
+    </class>
+</hibernate-mapping>

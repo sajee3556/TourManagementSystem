@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 15, 2014 11:52:24 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="db.entity.Bill" table="bill" catalog="tourmanagement">
+        <id name="refNo" type="int">
+            <column name="ref_no" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="town" class="db.entity.Town" fetch="select">
+            <column name="town_id" />
+        </many-to-one>
+        <many-to-one name="tour" class="db.entity.Tour" fetch="select">
+            <column name="tour_code" />
+        </many-to-one>
+        <many-to-one name="hotel" class="db.entity.Hotel" fetch="select">
+            <column name="hotel_id" />
+        </many-to-one>
+        <property name="billDate" type="date">
+            <column name="bill_date" length="10" />
+        </property>
+        <property name="numberOfIndividuals" type="int">
+            <column name="number_of_individuals" not-null="true" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
+        </property>
+        <property name="paid" type="java.lang.Boolean">
+            <column name="paid" />
+        </property>
+    </class>
+</hibernate-mapping>
